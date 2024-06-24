@@ -17,10 +17,24 @@
 
 //  promises
 
-function myownsettimeout(callback, duration){
-    setTimeout(callback, duration)
+// function myownsettimeout(callback, duration){
+//     setTimeout(callback, duration)
+// }
+
+// myownsettimeout(function(){
+//     console.log("afterset timeout")
+// }, 1000)
+
+// promisified
+
+function promisifiedTimeout(duration){
+    const p = new Promise(function(resolve){
+        setTimeout(function(){
+            resolve();
+        }, duration)
+    })
+    return p;
 }
 
-myownsettimeout(function(){
-    console.log("afterset timeout")
-}, 1000)
+const ans = promisifiedTimeout(1000)
+console.log(ans)
